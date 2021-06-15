@@ -3,7 +3,9 @@ package ebmatches;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameRepositoryTest {
@@ -16,7 +18,8 @@ class GameRepositoryTest {
 
     @Test
     void testGetLargestGoalDiffMatch() {
-
+        Optional<Game> largestGoalDiff = repository.getLargestGoalDiffMatch();
+        assertEquals("Hungary", largestGoalDiff.get().getFirstCountry());
     }
 
 }
