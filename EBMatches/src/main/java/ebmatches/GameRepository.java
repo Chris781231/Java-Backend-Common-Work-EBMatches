@@ -54,10 +54,6 @@ public class GameRepository {
         int sumOfFirstCountry = games.stream()
                 .filter(c -> c.getFirstCountry().equalsIgnoreCase(country))
                 .mapToInt(Game::getFirstCountryScore)
-    public int getAllKickedGoalByCountry1(String country) {
-        return games.stream()
-                .filter(game -> game.getFirstCountry().equals(country) || game.getSecondCountry().equals(country))
-                .mapToInt(game -> game.getScoreByCountry(country))
                 .sum();
         int sumOfSecondCountry = games.stream()
                 .filter(c -> c.getSecondCountry().equalsIgnoreCase(country))
@@ -67,12 +63,21 @@ public class GameRepository {
 
     }
 
-    public String getMostGoalKickCountry() {
+    public int getAllKickedGoalByCountry1(String country) {
+        return games.stream()
+                .filter(game -> game.getFirstCountry().equals(country) || game.getSecondCountry().equals(country))
+                .mapToInt(game -> game.getScoreByCountry(country))
+                .sum();
+
+    }
+
+        public String getMostGoalKickCountry() {
 
         games.stream()
                 .map(Game::getFirstCountry)
                 .distinct()
                 .mapToInt(country -> getAllKickedGoalByCountry1(country));
+
         return null;
     }
 }
