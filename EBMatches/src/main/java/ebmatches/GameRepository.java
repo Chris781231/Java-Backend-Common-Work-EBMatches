@@ -4,21 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.OptionalInt;
+import java.util.*;
 
 public class GameRepository {
 
     private List<Game> games;
 
     public GameRepository(List<Game> games) {
-        this.games = games;
+        this.games = new ArrayList<>(games);
     }
 
     public List<Game> getGames() {
-        return games;
+        return new ArrayList<>(games);
     }
 
     public void addGame(Game game) {
