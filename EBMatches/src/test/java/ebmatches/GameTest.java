@@ -29,4 +29,16 @@ class GameTest {
         assertEquals("Portugália", game.getWinner());
 
     }
+
+    @Test
+    void getScoreByCountryTest() {
+        assertEquals(3, new Game("Hungary", "Italy", 3, 2).getScoreByCountry("Hungary"));
+        assertEquals(2, new Game("Hungary", "Italy", 3, 2).getScoreByCountry("Italy"));
+        assertEquals(0, new Game("Hungary", "Italy", 3, 2).getScoreByCountry("Portugal"));
+    }
+
+    @Test
+    void getScoreByCountryWithNullTest() {
+        assertEquals(0, new Game("Hungary", "Italy", 3, 2).getScoreByCountry(null));
+    }
 }

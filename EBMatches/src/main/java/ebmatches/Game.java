@@ -65,4 +65,15 @@ public class Game {
         }
         return "draw";
     }
+
+    public int getScoreByCountry(String country) {
+        int score = 0;
+        if (firstCountry.equalsIgnoreCase(country)) {
+            score = firstCountryScore;
+        }
+        if (secondCountry.equalsIgnoreCase(country)) {
+            score = secondCountryScore;
+        }
+        return score;
+    }
 }

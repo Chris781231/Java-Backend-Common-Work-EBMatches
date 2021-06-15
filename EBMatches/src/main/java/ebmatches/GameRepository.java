@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class GameRepository {
 
@@ -48,10 +50,19 @@ public class GameRepository {
                 .max(Comparator.comparingInt(g -> Math.abs(g.getFirstCountryScore() - g.getSecondCountryScore())));
     }
 
-    public int getAllKickedGoalByCountry(String country) {
+    public int getAllKickedGoalByCountry1(String country) {
         return games.stream()
-                .filter(c -> c.getFirstCountry().equalsIgnoreCase(country)) // Ebből a szűrőből kellene még egy, de a secondra.
-                .mapToInt(Game::getFirstCountryScore)
+                .filter(game -> game.getFirstCountry().equals(country) || game.getSecondCountry().equals(country))
+                .mapToInt(game -> game.getScoreByCountry(country))
                 .sum();
+    }
+
+    public String getMostGoalKickCountry() {
+
+        games.stream()
+                .map(Game::getFirstCountry)
+                .distinct()
+                .mapToInt(country -> getAllKickedGoalByCountry1(country));
+        return null;
     }
 }
