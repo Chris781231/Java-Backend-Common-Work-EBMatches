@@ -1,5 +1,9 @@
 package ebmatches;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +20,31 @@ public class GameRepository {
     public List<Game> getGames() {
         return games;
     }
+
+    public void addGame(Game game) {
+        if (game == null) {
+            throw new IllegalArgumentException("Game cannot be null");
+        }
+        games.add(game);
+    }
+
+    public void addGamesFromFile(Path file) {
+
+        try (BufferedReader reader = Files.newBufferedReader(file)){
+            String line;
+            while ((line = reader.readLine()) != null) {
+                games.add(getGame(line));
+            }
+        } catch (IOException e) {
+            throw new IllegalStateException("Cannot read file");
+        }
+    }
+
+    private Game getGame(String line) {
+        String [] parts = line.split(";");
+        return new Game(parts[0], parts[1], Integer.parseInt(parts[2]), Integer.parseInt(parts[3]));
+    }
+
 
     public Optional<Game> getLargestGoalDiffMatch() {
         return games.stream()
