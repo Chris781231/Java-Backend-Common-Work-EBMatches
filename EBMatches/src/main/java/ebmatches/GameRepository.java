@@ -50,11 +50,21 @@ public class GameRepository {
                 .max(Comparator.comparingInt(g -> Math.abs(g.getFirstCountryScore() - g.getSecondCountryScore())));
     }
 
+    public int getAllKickedGoalByCountry(String country) {
+        int sumOfFirstCountry = games.stream()
+                .filter(c -> c.getFirstCountry().equalsIgnoreCase(country))
+                .mapToInt(Game::getFirstCountryScore)
     public int getAllKickedGoalByCountry1(String country) {
         return games.stream()
                 .filter(game -> game.getFirstCountry().equals(country) || game.getSecondCountry().equals(country))
                 .mapToInt(game -> game.getScoreByCountry(country))
                 .sum();
+        int sumOfSecondCountry = games.stream()
+                .filter(c -> c.getSecondCountry().equalsIgnoreCase(country))
+                .mapToInt(Game::getSecondCountryScore)
+                .sum();
+        return sumOfFirstCountry + sumOfSecondCountry;
+
     }
 
     public String getMostGoalKickCountry() {
