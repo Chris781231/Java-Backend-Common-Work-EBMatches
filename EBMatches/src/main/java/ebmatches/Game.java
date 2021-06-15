@@ -55,4 +55,14 @@ public class Game {
                 ", secondCountryScore=" + secondCountryScore +
                 '}';
     }
+
+    public String getWinner() {
+        if (firstCountryScore > secondCountryScore) {
+            return firstCountry;
+        }
+        if (secondCountryScore > firstCountryScore) {
+            return secondCountry;
+        }
+        return "draw";
+    }
 }
