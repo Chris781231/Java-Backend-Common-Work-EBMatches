@@ -48,7 +48,7 @@ class GameRepositoryTest {
     }
 
     @Test
-    void getAllKickedGoalByCountryTest() {
+    void getAllKickedGoalByCountryTest1() {
         assertEquals(9, repository.getAllKickedGoalByCountry1("Hungary"));
         assertEquals(2, repository.getAllKickedGoalByCountry1("Italy"));
         assertEquals(2, repository.getAllKickedGoalByCountry1("Portugal"));
@@ -57,6 +57,7 @@ class GameRepositoryTest {
     @Test
     void getMostGoalKickCountryTest() {
         repository.addGamesFromFile(Path.of("results.csv"));
-        repository.getMostGoalKickCountry();
+        assertEquals("Hungary", repository.getMostGoalKickCountry());
     }
+
 }
