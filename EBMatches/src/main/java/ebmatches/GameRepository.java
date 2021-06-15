@@ -50,4 +50,11 @@ public class GameRepository {
         return games.stream()
                 .max(Comparator.comparingInt(g -> Math.abs(g.getFirstCountryScore() - g.getSecondCountryScore())));
     }
+
+    public int getAllKickedGoalByCountry(String country) {
+        return games.stream()
+                .filter(c -> c.getFirstCountry().equalsIgnoreCase(country)) // Ebből a szűrőből kellene még egy, de a secondra.
+                .mapToInt(Game::getFirstCountryScore)
+                .sum();
+    }
 }
