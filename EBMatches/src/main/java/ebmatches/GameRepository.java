@@ -49,9 +49,15 @@ public class GameRepository {
     }
 
     public int getAllKickedGoalByCountry(String country) {
-        return games.stream()
-                .filter(c -> c.getFirstCountry().equalsIgnoreCase(country)) // Ebből a szűrőből kellene még egy, de a secondra.
+        int sumOfFirstCountry = games.stream()
+                .filter(c -> c.getFirstCountry().equalsIgnoreCase(country))
                 .mapToInt(Game::getFirstCountryScore)
                 .sum();
+        int sumOfSecondCountry = games.stream()
+                .filter(c -> c.getSecondCountry().equalsIgnoreCase(country))
+                .mapToInt(Game::getSecondCountryScore)
+                .sum();
+        return sumOfFirstCountry + sumOfSecondCountry;
+
     }
 }

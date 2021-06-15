@@ -13,4 +13,8 @@ public class GameService {
     public Optional<Game> getLargestGoalDiffMatch() {
         return repository.getLargestGoalDiffMatch();
     }
+
+    public int getAllKickedGoalByCountry(String country) {
+        return repository.getAllKickedGoalByCountry(country);
+    }
 }
