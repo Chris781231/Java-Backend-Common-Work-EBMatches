@@ -28,4 +28,11 @@ class GameServiceTest {
         assertThat(service.getLargestGoalDiffMatch().get().getWinner()).isEqualTo("Hungary");
     }
 
+    @Test
+    void getMostGoalKickCountryTest() {
+        when(repository.getMostGoalKickCountry())
+                .thenReturn("Hungary");
+        assertThat(service.getMostGoalKickCountry()).isEqualTo("Hungary");
+    }
+
 }
