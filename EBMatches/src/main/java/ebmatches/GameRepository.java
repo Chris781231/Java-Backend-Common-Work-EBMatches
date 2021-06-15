@@ -1,6 +1,9 @@
 package ebmatches;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
 
 public class GameRepository {
 
@@ -12,5 +15,10 @@ public class GameRepository {
 
     public List<Game> getGames() {
         return games;
+    }
+
+    public Optional<Game> getLargestGoalDiffMatch() {
+        return games.stream()
+                .max(Comparator.comparingInt(g -> Math.abs(g.getFirstCountryScore() - g.getSecondCountryScore())));
     }
 }
