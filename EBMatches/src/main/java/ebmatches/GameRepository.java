@@ -74,8 +74,10 @@ public class GameRepository {
         public String getMostGoalKickCountry() {
 
         return games.stream()
-                .map(Game::getFirstCountry)
+                .flatMap(p -> Stream.of(p.getFirstCountry(), p.getSecondCountry()))
                 .distinct()
-                .max(Comparator.comparing(this::getAllKickedGoalByCountry1)).orElseThrow();
+                .max(Comparator.comparing(this::getAllKickedGoalByCountry1))
+                .orElseThrow();
+
     }
 }
