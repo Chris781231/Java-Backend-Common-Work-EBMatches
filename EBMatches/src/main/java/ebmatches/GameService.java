@@ -15,7 +15,7 @@ public class GameService {
     }
 
     public int getAllKickedGoalByCountry(String country) {
-        return repository.getAllKickedGoalByCountry(country);
+        return repository.getAllKickedGoalByCountry1(country);
     }
 
     public String getMostGoalKickCountry() {

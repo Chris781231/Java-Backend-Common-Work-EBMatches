@@ -29,6 +29,13 @@ class GameServiceTest {
     }
 
     @Test
+    void testGetAllKickedGoalByCountry() {
+        when(repository.getAllKickedGoalByCountry1("Hungary"))
+                .thenReturn(9);
+        assertEquals(9, service.getAllKickedGoalByCountry("Hungary"));
+    }
+
+    @Test
     void getMostGoalKickCountryTest() {
         when(repository.getMostGoalKickCountry())
                 .thenReturn("Hungary");
